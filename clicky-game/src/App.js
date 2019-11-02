@@ -4,20 +4,58 @@ import Wrapper from "./components/Wrapper";
 import Title from "./components/Title";
 import objects from "./objects.json";
 
-let score = 0;
-let topScore = 0;
+// let score = 0;
+// let topScore = 0;
+
+//array of clicked items with their ids
+let clickedItems = [];
+
 
 class App extends Component {
   // Setting this.state.friends to the friends json array
   state = {
-    objects
+    objects,
+    score: 0,
+    topScore: 0
   };
 
-  removeFriend = id => {
-    // Filter this.state.friends for friends with an id not equal to the id being removed
-    const friends = this.state.objects.filter(friend => friend.id !== id);
-    // Set this.state.friends equal to the new friends array
-    this.setState({ friends });
+  checkArray = id => {
+    console.log("check:" + id);
+    // clickedItems.indexOf(id);
+    if (clickedItems.indexOf(id) === -1) {
+      clickedItems.push(id);
+      console.log(clickedItems);
+
+    } else {
+      this.handleGameOver();
+    }
+    //see if id matches any ids in the clicked array
+    //if the id is in the clicked array, handle game over
+    //if the id is not in the array, push the id to the array
+      //increase score by 1
+
+    //call the handle Shufflefuntion
+  }
+
+  handleGameOver = () => {
+    //reset everything to 0, clear state
+    //check the total score, if higher, update
+    this.setState({ score: 0 }, 
+      () => {
+        console.log(this.state.score);
+      });
+  }
+
+  handleShuffle = () => {
+    //for loop => go through the array and shuffle => return the array
+    //google this
+    
+    //set the state to the new shuffled object
+  }
+
+  handleClick = id => {
+    console.log("I've been clicked", id);
+    this.checkArray(id);
   };
 
   // Map over this.state.friends and render a FriendCard component for each friend object
@@ -27,7 +65,7 @@ class App extends Component {
         <Title>Friends List</Title>
         {this.state.objects.map(friend => (
           <Card
-            removeFriend={this.removeFriend}
+            handleClick={this.handleClick}
             id={friend.id}
             key={friend.id}
             name={friend.name}
