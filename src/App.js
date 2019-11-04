@@ -25,6 +25,14 @@ class App extends Component {
     if (clickedItems.indexOf(id) === -1) {
       clickedItems.push(id);
       console.log(clickedItems);
+      this.state.score ++;
+      console.log("Score: " + this.state.score);
+      if (this.state.score > this.state.topScore) {
+        this.state.topScore ++;
+
+      } else {
+        return this.state.topScore;
+      }
 
     } else {
       this.handleGameOver();
@@ -35,6 +43,7 @@ class App extends Component {
       //increase score by 1
 
     //call the handle Shufflefuntion
+
   }
 
   handleGameOver = () => {
@@ -44,6 +53,7 @@ class App extends Component {
       () => {
         console.log(this.state.score);
       });
+    alert("You lose")
   }
 
   handleShuffle = () => {
@@ -68,7 +78,9 @@ class App extends Component {
   render() {
     return (
       <Wrapper>
-        <Title>Friends List</Title>
+        <Title>Clicky Game</Title>
+        <div className="col-lg-6"><p>Score: {this.state.score}</p></div>
+        <div className="col-lg-6"><p>Top Score: {this.state.topScore}</p></div>
         {this.state.objects.map(friend => (
           <Card
             handleClick={this.handleClick}
@@ -80,6 +92,7 @@ class App extends Component {
             location={friend.location}
           />
         ))}
+        
       </Wrapper>
     );
   }
