@@ -51,11 +51,17 @@ class App extends Component {
     //google this
     
     //set the state to the new shuffled object
+    this.setState({
+      objects: this.state.objects.sort(function(a, b){
+        return 0.5 - Math.random()
+      })
+    })
   }
 
   handleClick = id => {
     console.log("I've been clicked", id);
     this.checkArray(id);
+    this.handleShuffle(id);
   };
 
   // Map over this.state.friends and render a FriendCard component for each friend object
