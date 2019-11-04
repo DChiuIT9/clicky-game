@@ -26,6 +26,7 @@ class App extends Component {
       clickedItems.push(id);
       console.log(clickedItems);
       this.state.score ++;
+      // this.setState({count: this.state.score++})
       console.log("Score: " + this.state.score);
       if (this.state.score > this.state.topScore) {
         this.state.topScore ++;
@@ -53,6 +54,7 @@ class App extends Component {
       () => {
         console.log(this.state.score);
       });
+    clickedItems = [];
     alert("You lose")
   }
 
